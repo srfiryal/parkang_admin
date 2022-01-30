@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:parkang_admin/shared/custom_password_field.dart';
 import 'package:parkang_admin/shared/custom_text_field.dart';
+import 'package:parkang_admin/shared/shared_code.dart';
+import 'package:parkang_admin/view/drawer_navigation.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -44,7 +46,9 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 10.0),
                   CustomPasswordField(label: 'Password', controller: _passwordController),
                   const SizedBox(height: 25.0),
-                  OutlinedButton(onPressed: () {}, child: const Text('LOGIN')),
+                  OutlinedButton(onPressed: () {
+                    SharedCode.navigatorPushAndRemoveUntil(context, const DrawerNavigation());
+                  }, child: const Text('LOGIN')),
                 ],
               ),
             )
