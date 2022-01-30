@@ -26,6 +26,7 @@ class _ProductFormState extends State<ProductForm> {
   final TextEditingController _priceController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = true;
+  bool _isActive = true;
   XFile _imageFile = XFile('');
   String _imageUrl = '';
   final String _defaultImageUrl = 'https://firebasestorage.googleapis.com/v0/b/parkang-e7109.appspot.com/o/cubes.png?alt=media&token=924d5580-e41d-480b-a18c-fc940f590c2a';
@@ -42,6 +43,7 @@ class _ProductFormState extends State<ProductForm> {
       _descriptionController.text = widget.model!.description;
       _priceController.text = widget.model!.price.toString();
       _imageUrl = widget.model!.imageUrl;
+      _isActive = widget.model!.isActive;
     }
     _imageUrl = _imageUrl.isEmpty ? _defaultImageUrl : _imageUrl;
     _initializeData();
@@ -127,6 +129,18 @@ class _ProductFormState extends State<ProductForm> {
                           const SizedBox(height: 15),
                           _buildDropdownCategory(),
                           const SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('Is Available'),
+                              Switch(value: _isActive, onChanged: (b) {
+                                setState(() {
+                                  _isActive = b;
+                                });
+                              }),
+                            ],
+                          ),
+                          const SizedBox(height: 15),
                           OutlinedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
@@ -161,7 +175,7 @@ class _ProductFormState extends State<ProductForm> {
       String name = _nameController.text;
       int price = int.parse(_priceController.text);
       String description = _descriptionController.text;
-      ProductModel model = ProductModel(name: name, price: price, categoryId: _category, description: description, imageUrl: _imageUrl);
+      ProductModel model = ProductModel(name: name, price: price, categoryId: _category, description: description, imageUrl: _imageUrl, isActive: _isActive);
       widget.isEdit ? await DatabaseService().saveProduct(widget.model!, model) : await DatabaseService().addProduct(model);
       SharedCode.showSnackBar(context, 'success', widget.isEdit ? 'Product has been edited' : 'Product has been added');
       Navigator.pop(context);
