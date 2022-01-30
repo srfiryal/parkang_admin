@@ -44,8 +44,8 @@ class SharedCode {
       title: Text(title),
       content: Text(message),
       actions: [
-        TextButton(child: const Text('Tidak'), onPressed: () => Navigator.of(context).pop()),
-        TextButton(child: const Text('Ya'), onPressed: onYesTap)
+        TextButton(child: const Text('No'), onPressed: () => Navigator.of(context).pop()),
+        TextButton(child: const Text('Yes'), onPressed: onYesTap)
       ],
     );
 
