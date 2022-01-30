@@ -71,13 +71,10 @@ class _ProductFormState extends State<ProductForm> {
                       child: Stack(
                         children: [
                           SizedBox(
-                            width: 85.0,
-                            height: 85.0,
+                            width: 100.0,
+                            height: 100.0,
                             child: _imageFile.path == ''
-                                ? CircleAvatar(
-                              backgroundColor: Colors.white,
-                              backgroundImage: NetworkImage(_imageUrl),
-                            )
+                                ? Image.network(_imageUrl)
                                 : ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: Image.file(File(_imageFile.path),
