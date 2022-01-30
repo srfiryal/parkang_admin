@@ -31,14 +31,6 @@ class SharedCode {
     widget), (Route<dynamic> route) => false);
   }
 
-  // static void showErrorDialog(BuildContext context, String title, String content) {
-  //   showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return CustomErrorDialog(title: title, content: content);
-  //       });
-  // }
-
   static void showConfirmationDialog(BuildContext context, String title, String message, VoidCallback onYesTap) {
     AlertDialog alert = AlertDialog(
       title: Text(title),

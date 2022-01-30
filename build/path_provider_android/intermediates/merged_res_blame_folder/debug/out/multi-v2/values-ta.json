@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Kevin RF\\Dev\\Alga\\Parkang\\parkang_admin\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\values-ta\\values-ta.xml",
+            "outputFile": "H:\\Projects\\parkang_admin\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\values-ta\\values-ta.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\values-ta\\values-ta.xml",
+                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\8a7f6825b2c857263502d908e7ce1fa5\\core-1.6.0\\res\\values-ta\\values-ta.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Kevin RF\\Dev\\Alga\\Parkang\\parkang_admin\\build\\path_provider_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ta\\values-ta.xml",
+            "outputFile": "H:\\Projects\\parkang_admin\\build\\path_provider_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ta\\values-ta.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\values-ta\\values-ta.xml",
+                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\8a7f6825b2c857263502d908e7ce1fa5\\core-1.6.0\\res\\values-ta\\values-ta.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

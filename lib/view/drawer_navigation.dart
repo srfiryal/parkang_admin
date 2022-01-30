@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parkang_admin/shared/shared_code.dart';
-import 'package:parkang_admin/view/admins.dart';
-import 'package:parkang_admin/view/login.dart';
+import 'package:parkang_admin/view/admin/admins.dart';
+import 'package:parkang_admin/view/category/categories.dart';
 import 'package:parkang_admin/view/orders.dart';
-import 'package:parkang_admin/view/products.dart';
+import 'package:parkang_admin/view/product/products.dart';
+import 'package:parkang_admin/wrapper.dart';
 
 class DrawerNavigation extends StatefulWidget {
   const DrawerNavigation({Key? key}) : super(key: key);
@@ -17,12 +19,22 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
   final List<Widget> _widgets = [
     const Orders(),
     const Products(),
+    const Categories(),
     const Admins()
   ];
-  final List<String> _titles = ['O R D E R S', 'P R O D U C T S', 'A D M I N S'];
+  final List<String> _titles = ['O R D E R S', 'P R O D U C T S', 'C A T E G O R I E S', 'A D M I N S'];
   int _selectedIndex = 0;
-  final String _userName = 'Admin';
-  final String _userEmail = 'admin@gmail.com';
+  String _userName = 'Admin';
+  String _userEmail = 'admin@gmail.com';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    User? user = FirebaseAuth.instance.currentUser;
+    _userEmail = user!.email ?? '';
+    _userName = user.displayName ?? 'Admin';
+  }
 
   void _switchPage(int index) {
     setState(() {
@@ -31,8 +43,11 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
     });
   }
 
-  void _logout() {
-    SharedCode.showConfirmationDialog(context, 'Logout', 'Are you sure?', () => SharedCode.navigatorPushAndRemoveUntil(context, const Login()));
+  void _logout() async {
+    SharedCode.showConfirmationDialog(context, 'Logout', 'Are you sure?', () async {
+      await FirebaseAuth.instance.signOut();
+      SharedCode.navigatorPushAndRemoveUntil(context, const Wrapper());
+    });
   }
 
   @override
@@ -47,9 +62,10 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             _drawerHeader(),
-            _drawerItem(0, 'Orders', Icons.shopping_bag),
+            _drawerItem(0, 'Orders', Icons.shopping_bag_outlined),
             _drawerItem(1, 'Products', Icons.storefront),
-            _drawerItem(2, 'Admins', Icons.person),
+            _drawerItem(2, 'Categories', Icons.category_outlined),
+            _drawerItem(3, 'Admins', Icons.person_outlined),
             _drawerItem(-1, 'Logout', Icons.exit_to_app),
           ],
         ),
