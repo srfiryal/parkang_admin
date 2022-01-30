@@ -43,6 +43,12 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.blueGrey.shade700,
+          labelStyle: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+          unselectedLabelColor: Colors.grey.shade600,
+          unselectedLabelStyle: GoogleFonts.poppins(fontWeight: FontWeight.w400),
+        ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
             primary: Colors.black,
