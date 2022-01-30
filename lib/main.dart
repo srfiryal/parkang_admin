@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blueGrey.shade700,
           elevation: 0.0,
           centerTitle: true,
-          titleTextStyle: GoogleFonts.poppins(color: Colors.black, fontSize: 18.0),
         ),
         inputDecorationTheme: InputDecorationTheme(
           fillColor: Colors.grey.shade200,
