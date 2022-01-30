@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parkang_admin/view/login.dart';
+import 'package:parkang_admin/wrapper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -29,6 +33,20 @@ class MyApp extends StatelessWidget {
           filled: true,
           contentPadding: const EdgeInsets.all(10.0),
           focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(0.0),
+            borderSide: const BorderSide(
+              color: Colors.black,
+              width: 1.0,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(0.0),
+            borderSide: const BorderSide(
+              color: Colors.black,
+              width: 1.0,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(0.0),
             borderSide: const BorderSide(
               color: Colors.black,
@@ -66,7 +84,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const Login(),
+      home: const Wrapper(),
     );
   }
 }
