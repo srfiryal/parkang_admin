@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class SharedCode {
-  static final numberFormat = NumberFormat('#,##0');
+  static final rupiahFormat = NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'Rp');
 
   static String? emptyValidator(value) {
     return value.toString().trim().isEmpty ? 'Field can\'t be blank' : null;
@@ -65,5 +65,24 @@ class SharedCode {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  static Color getOrderStatusColor(BuildContext context, String status) {
+    Color color;
+    switch (status) {
+      case 'On Delivery':
+        color = Colors.blue;
+        break;
+      case 'Completed':
+        color = Colors.green;
+        break;
+      case 'Canceled':
+        color = Colors.red;
+        break;
+      default:
+        color = Theme.of(context).primaryColor;
+        break;
+    }
+    return color;
   }
 }

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "H:\\Projects\\parkang_admin\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lt\\values-lt.xml",
+            "outputFile": "C:\\Users\\Kevin RF\\Dev\\Alga\\Parkang\\parkang_admin\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lt\\values-lt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\8a7f6825b2c857263502d908e7ce1fa5\\core-1.6.0\\res\\values-lt\\values-lt.xml",
+                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\8a7f6825b2c857263502d908e7ce1fa5\\core-1.6.0\\res\\values-lt\\values-lt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\da6e58967780a53f83f11ab769f7c2d2\\jetified-play-services-basement-18.0.0\\res\\values-lt\\values.xml",
+                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\da6e58967780a53f83f11ab769f7c2d2\\jetified-play-services-basement-18.0.0\\res\\values-lt\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\e91c76fa5178367a03077f75662eefda\\jetified-play-services-base-17.1.0\\res\\values-lt\\values.xml",
+                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\e91c76fa5178367a03077f75662eefda\\jetified-play-services-base-17.1.0\\res\\values-lt\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
