@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parkang_admin/models/order_item_model.dart';
 import 'package:parkang_admin/models/order_model.dart';
 import 'package:parkang_admin/shared/loading.dart';
+import 'package:parkang_admin/shared/shared_code.dart';
+import 'package:parkang_admin/view/order_detail.dart';
 
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
@@ -35,14 +37,14 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
     _setLoading(true);
 
     List<OrderItemModel> _orderItems = [
-      OrderItemModel('', 'Produk 1', 'https://images.heb.com/is/image/HEBGrocery/000318982', 10000, 1, 10000),
-      OrderItemModel('', 'Produk 2', 'https://images.heb.com/is/image/HEBGrocery/000318982', 10000, 1, 10000),
-      OrderItemModel('', 'Produk 3', 'https://images.heb.com/is/image/HEBGrocery/000318982', 10000, 2, 20000)
+      OrderItemModel('', 'Produk 1', 'https://brumano.b-cdn.net/wp-content/uploads/2018/12/Royal-Blue-Casual-Check-Shirt-1-min.jpg', 10000, 1, 10000),
+      OrderItemModel('', 'Produk 2', 'https://brumano.b-cdn.net/wp-content/uploads/2018/12/Royal-Blue-Casual-Check-Shirt-1-min.jpg', 10000, 1, 10000),
+      OrderItemModel('', 'Produk 3', 'https://brumano.b-cdn.net/wp-content/uploads/2018/12/Royal-Blue-Casual-Check-Shirt-1-min.jpg', 10000, 2, 20000)
     ];
     _orders = [
-      OrderModel('#29012022-1', 'In Progress', 'Testing', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Tunai', 'Diantar', ''),
-      OrderModel('#29012022-2', 'In Progress', 'Testing', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Tunai',  'JNE', '12345678'),
-      OrderModel('#29012022-3', 'In Progress', 'Testing', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Tunai', 'JNT', '12345678'),
+      OrderModel('#29012022-1', 'In Progress', 'Buyer', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Cash', 'Delivery', '-'),
+      OrderModel('#29012022-2', 'In Progress', 'Buyer', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Bank Transfer',  'JNE', '12345678'),
+      OrderModel('#29012022-3', 'In Progress', 'Buyer', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Cash', 'JNT', '12345678'),
     ];
 
     _setLoading(false);
@@ -99,28 +101,12 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildItemCard(OrderModel orderModel) {
-    Color statusColor;
-    switch (orderModel.status) {
-      case 'On Delivery':
-        statusColor = Colors.blue;
-        break;
-      case 'Completed':
-        statusColor = Colors.green;
-        break;
-      case 'Canceled':
-        statusColor = Colors.red;
-        break;
-      default:
-        statusColor = Theme.of(context).primaryColor;
-        break;
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
       child: Card(
         elevation: 6.0,
         child: InkWell(
-          onTap: () {},
+          onTap: () => SharedCode.navigatorPush(context, OrderDetail(orderModel: orderModel)),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -129,7 +115,7 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(orderModel.status, style: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.bold, color: statusColor)),
+                    Text(orderModel.status, style: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.bold, color: SharedCode.getOrderStatusColor(context, orderModel.status))),
                     Text(orderModel.id, style: GoogleFonts.poppins(fontSize: 12.0))
                   ],
                 ),
@@ -144,7 +130,7 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
                 const SizedBox(height: 5.0),
                 Text(orderModel.address),
                 const SizedBox(height: 10.0),
-                Text('${orderModel.items.length} pesanan'),
+                Text('${orderModel.items.length} items'),
               ],
             ),
           ),

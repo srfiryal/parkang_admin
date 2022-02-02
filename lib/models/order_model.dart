@@ -7,8 +7,8 @@ class OrderModel {
   final String buyersPhone;
   final String address;
   final List<OrderItemModel> items;
-  final int itemsTotalPrice;
-  final int deliveryFee;
+  final int orderSummary;
+  final int shippingFee;
   final int totalPrice;
   final String paymentMethod;
   final String shipmentMethod;
@@ -21,8 +21,8 @@ class OrderModel {
       this.buyersPhone,
       this.address,
       this.items,
-      this.itemsTotalPrice,
-      this.deliveryFee,
+      this.orderSummary,
+      this.shippingFee,
       this.totalPrice,
       this.paymentMethod,
       this.shipmentMethod,

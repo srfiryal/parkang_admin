@@ -68,8 +68,8 @@ class MyApp extends StatelessWidget {
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-            primary: Colors.black,
-            backgroundColor: Colors.grey.shade200,
+            primary: Colors.white,
+            backgroundColor: Colors.black,
             elevation: 0.0,
             minimumSize: const Size(double.infinity, 40.0),
             side: const BorderSide(color: Colors.black, width: 1.0),

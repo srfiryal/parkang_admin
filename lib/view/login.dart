@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
 
   Widget _buildAllWidgets() {
     return Scaffold(
-      appBar: AppBar(title: const Text('PARKANG ADMIN')),
+      appBar: AppBar(title: const Text('P A R K A N G   A D M I N')),
       body: _isLoading
           ? const Loading()
           : SingleChildScrollView(
