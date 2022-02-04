@@ -54,42 +54,40 @@ class _CategoriesState extends State<Categories> {
   }
 
   Widget _buildMenuItem(CategoryModel model) {
-    return Column(
-      children: [
-        IntrinsicHeight(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(model.title, style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis),
-                ],
-              )),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.0),
-                child: VerticalDivider(color: Colors.grey),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    SharedCode.navigatorPush(context, CategoryForm(isEdit: true, model: model));
-                  },
-                  child: const Icon(Icons.edit, color: Colors.grey)
-              ),
-              const SizedBox(width: 5.0),
-              GestureDetector(
-                  onTap: () {
-                    _showConfirmationDialog(model);
-                  },
-                  child: const Icon(Icons.delete, color: Colors.red)
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        SharedCode.navigatorPush(context, CategoryForm(isEdit: true, model: model));
+      },
+      child: Column(
+        children: [
+          IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(child: Text(model.title, style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis)),
+                  ],
+                )),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2.0),
+                  child: VerticalDivider(color: Colors.grey),
+                ),
+                GestureDetector(
+                    onTap: () {
+                      _showConfirmationDialog(model);
+                    },
+                    child: const Icon(Icons.delete, color: Colors.red)
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 5),
-        const Divider(color: Colors.grey),
-        const SizedBox(height: 5),
-      ],
+          const SizedBox(height: 5),
+          const Divider(color: Colors.grey),
+          const SizedBox(height: 5),
+        ],
+      ),
     );
   }
 
