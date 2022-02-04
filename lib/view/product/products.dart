@@ -63,69 +63,74 @@ class _ProductsState extends State<Products> {
   }
 
   Widget _buildMenuItem(ProductModel model) {
-    return Column(
-      children: [
-        IntrinsicHeight(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Image.network(model.imageUrl, height: 80, width: 80),
-                      const SizedBox(width: 10),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        SharedCode.navigatorPush(
+            context, ProductForm(isEdit: true, model: model));
+      },
+      child: Column(
+        children: [
+          IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: Row(
                         children: [
-                          Text(model.name,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis),
-                          Text(model.price.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                          Text(model.isActive ? 'Active' : 'Inactive',
-                              style: TextStyle(
-                                  color: model.isActive
-                                      ? Colors.green
-                                      : Colors.red,
-                                  fontWeight: FontWeight.bold)),
-                          Text(model.description,
-                              maxLines: 1, overflow: TextOverflow.ellipsis),
+                          Image.network(model.imageUrl, height: 80, width: 80),
+                          const SizedBox(width: 10),
+                          Flexible(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(model.name,
+                                    style:
+                                        const TextStyle(fontWeight: FontWeight.bold),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis),
+                                Text(model.price.toString(),
+                                    style:
+                                        const TextStyle(fontWeight: FontWeight.bold)),
+                                Text(model.isActive ? 'Active' : 'Inactive',
+                                    style: TextStyle(
+                                        color: model.isActive
+                                            ? Colors.green
+                                            : Colors.red,
+                                        fontWeight: FontWeight.bold)),
+                                Flexible(
+                                  child: Text(model.description,
+                                      maxLines: 1, overflow: TextOverflow.ellipsis),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
-                      )
-                    ],
-                  ),
-                ],
-              )),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.0),
-                child: VerticalDivider(color: Colors.grey),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    SharedCode.navigatorPush(
-                        context, ProductForm(isEdit: true, model: model));
-                  },
-                  child: const Icon(Icons.edit, color: Colors.grey)),
-              const SizedBox(width: 5.0),
-              GestureDetector(
-                  onTap: () {
-                    _showConfirmationDialog(model);
-                  },
-                  child: const Icon(Icons.delete, color: Colors.red)),
-            ],
+                      ),
+                    ),
+                  ],
+                )),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2.0),
+                  child: VerticalDivider(color: Colors.grey),
+                ),
+                GestureDetector(
+                    onTap: () {
+                      _showConfirmationDialog(model);
+                    },
+                    child: const Icon(Icons.delete, color: Colors.red)),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 5),
-        const Divider(color: Colors.grey),
-        const SizedBox(height: 5),
-      ],
+          const SizedBox(height: 5),
+          const Divider(color: Colors.grey),
+          const SizedBox(height: 5),
+        ],
+      ),
     );
   }
 

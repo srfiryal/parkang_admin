@@ -61,8 +61,8 @@ class _AdminsState extends State<Admins> {
               Expanded(child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(model.name, style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis),
-                  Text(model.email),
+                  Flexible(child: Text(model.name, style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(model.email)),
                 ],
               )),
             ],
