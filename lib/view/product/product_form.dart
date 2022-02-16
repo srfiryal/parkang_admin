@@ -24,6 +24,7 @@ class _ProductFormState extends State<ProductForm> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _weightController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = true;
   bool _isActive = true;
@@ -42,6 +43,7 @@ class _ProductFormState extends State<ProductForm> {
       _nameController.text = widget.model!.name;
       _descriptionController.text = widget.model!.description;
       _priceController.text = widget.model!.price.toString();
+      _weightController.text = widget.model!.weight.toString();
       _imageUrl = widget.model!.imageUrl;
       _isActive = widget.model!.isActive;
     }
@@ -124,6 +126,12 @@ class _ProductFormState extends State<ProductForm> {
                               controller: _priceController,
                               validator: SharedCode.emptyValidator),
                           const SizedBox(height: 15),
+                          CustomTextField(
+                              label: 'Weight (in gram)',
+                              textInputType: TextInputType.number,
+                              controller: _weightController,
+                              validator: SharedCode.emptyValidator),
+                          const SizedBox(height: 15),
                           _buildDropdownCategory(),
                           const SizedBox(height: 15),
                           Row(
@@ -171,8 +179,9 @@ class _ProductFormState extends State<ProductForm> {
     try {
       String name = _nameController.text;
       int price = int.parse(_priceController.text);
+      int weight = int.parse(_weightController.text);
       String description = _descriptionController.text;
-      ProductModel model = ProductModel(name: name, price: price, categoryId: _category, description: description, imageUrl: _imageUrl, isActive: _isActive);
+      ProductModel model = ProductModel(name: name, price: price, categoryId: _category, description: description, imageUrl: _imageUrl, isActive: _isActive, weight: weight);
       widget.isEdit ? await DatabaseService().saveProduct(widget.model!, model) : await DatabaseService().addProduct(model);
       SharedCode.showSnackBar(context, 'success', widget.isEdit ? 'Product has been edited' : 'Product has been added');
       Navigator.pop(context);
@@ -267,11 +276,11 @@ class _ProductFormState extends State<ProductForm> {
     QuerySnapshot snapshot =
     await category.orderBy('createdAt', descending: false).get();
     if (snapshot.size > 0) {
-      snapshot.docs.forEach((element) {
+      for (var element in snapshot.docs) {
         Map<String, dynamic> document = element.data() as Map<String, dynamic>;
         CategoryModel model = CategoryModel.fromMap(element.id, document);
         _categoryDropdownList.add(model);
-      });
+      }
 
       _category = _categoryDropdownList[0].id;
     }

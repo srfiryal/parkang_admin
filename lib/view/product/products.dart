@@ -63,7 +63,10 @@ class _ProductsState extends State<Products> {
   }
 
   Widget _buildMenuItem(ProductModel model) {
-    return GestureDetector(
+    return InkWell(
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      splashFactory: NoSplash.splashFactory,
       onTap: () {
         SharedCode.navigatorPush(
             context, ProductForm(isEdit: true, model: model));
@@ -93,9 +96,10 @@ class _ProductsState extends State<Products> {
                                         const TextStyle(fontWeight: FontWeight.bold),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis),
-                                Text(model.price.toString(),
+                                Text(SharedCode.rupiahFormat.format(model.price),
                                     style:
                                         const TextStyle(fontWeight: FontWeight.bold)),
+                                Text('${model.weight.toString()} grams'),
                                 Text(model.isActive ? 'Active' : 'Inactive',
                                     style: TextStyle(
                                         color: model.isActive
