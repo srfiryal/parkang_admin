@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductModel {
   final String id, name, description, imageUrl, categoryId;
-  final int price;
+  final int price, weight;
   final bool isActive;
 
   ProductModel(
@@ -11,8 +11,10 @@ class ProductModel {
       required this.description,
       required this.imageUrl,
       required this.price,
+      required this.weight,
       required this.categoryId,
-      required this.isActive});
+      required this.isActive
+      });
 
   factory ProductModel.fromMap(String id, Map<dynamic, dynamic> json) {
     return ProductModel(
@@ -21,19 +23,11 @@ class ProductModel {
       description: json['description'] ?? '',
       imageUrl: json['imageUrl'] ?? '',
       price: json['price'] ?? 0,
+      weight: json['weight'] ?? 0,
       categoryId: json['categoryId'] ?? '',
       isActive: json['isActive'] ?? false,
     );
   }
-  ProductModel.fromJson(Map<String, Object?> json)
-      : this(
-    name: json['name']! as String,
-    description: json['description']! as String,
-    imageUrl: json['imageUrl']! as String,
-    price: json['price']! as int,
-    categoryId: json['categoryId']! as String,
-    isActive: json['isActive']! as bool,
-  );
 
   Map<String, Object?> toJson() {
     return {
@@ -41,6 +35,7 @@ class ProductModel {
       'description': description,
       'imageUrl': imageUrl,
       'price': price,
+      'weight': weight,
       'categoryId': categoryId,
       'isActive': isActive,
       'createdAt': FieldValue.serverTimestamp()
