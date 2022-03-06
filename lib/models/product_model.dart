@@ -7,13 +7,13 @@ class ProductModel {
 
   ProductModel(
       {this.id = '',
-      required this.name,
-      required this.description,
-      required this.imageUrl,
-      required this.price,
-      required this.weight,
-      required this.categoryId,
-      required this.isActive
+        required this.name,
+        required this.description,
+        required this.imageUrl,
+        required this.price,
+        required this.weight,
+        required this.categoryId,
+        required this.isActive
       });
 
   factory ProductModel.fromMap(String id, Map<dynamic, dynamic> json) {
@@ -39,6 +39,18 @@ class ProductModel {
       'categoryId': categoryId,
       'isActive': isActive,
       'createdAt': FieldValue.serverTimestamp()
+    };
+  }
+
+  Map<String, Object?> toJsonOrder() {
+    return {
+      'name': name,
+      'description': description,
+      'imageUrl': imageUrl,
+      'price': price,
+      'weight': weight,
+      'categoryId': categoryId,
+      'isActive': isActive,
     };
   }
 }
