@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parkang_admin/models/order_item_model.dart';
 import 'package:parkang_admin/models/order_model.dart';
 import 'package:parkang_admin/shared/loading.dart';
 import 'package:parkang_admin/shared/shared_code.dart';
@@ -15,14 +15,20 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
   final List<Tab> _tabMenus = [
+    const Tab(text: 'Unpaid'),
     const Tab(text: 'In Progress'),
     const Tab(text: 'On Delivery'),
     const Tab(text: 'Completed'),
     const Tab(text: 'Canceled'),
   ];
-  bool _isLoading = false;
-  late List<OrderModel> _orders;
+  final List<OrderModel> _orders = [];
   late TabController _tabController;
+
+  Stream<QuerySnapshot> _stream = FirebaseFirestore.instance
+      .collection('orders')
+      .where('status', isEqualTo: 'unpaid')
+      .orderBy('createdAt', descending: true)
+      .snapshots();
 
   @override
   void initState() {
@@ -30,39 +36,38 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
     super.initState();
 
     _tabController = TabController(length: _tabMenus.length, vsync: this);
-    _getPrefs();
-  }
-
-  Future<void> _getPrefs() async {
-    _setLoading(true);
-
-    List<OrderItemModel> _orderItems = [
-      OrderItemModel('', 'Produk 1', 'https://brumano.b-cdn.net/wp-content/uploads/2018/12/Royal-Blue-Casual-Check-Shirt-1-min.jpg', 10000, 1, 10000),
-      OrderItemModel('', 'Produk 2', 'https://brumano.b-cdn.net/wp-content/uploads/2018/12/Royal-Blue-Casual-Check-Shirt-1-min.jpg', 10000, 1, 10000),
-      OrderItemModel('', 'Produk 3', 'https://brumano.b-cdn.net/wp-content/uploads/2018/12/Royal-Blue-Casual-Check-Shirt-1-min.jpg', 10000, 2, 20000)
-    ];
-    _orders = [
-      OrderModel('#29012022-1', 'In Progress', 'Buyer', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Cash', 'Delivery', '-'),
-      OrderModel('#29012022-2', 'In Progress', 'Buyer', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Bank Transfer',  'JNE', '12345678'),
-      OrderModel('#29012022-3', 'In Progress', 'Buyer', '08123456789', 'Jl. Satu No. 2, RT004 RW005, Kel. Enam, Kec. Tujuh, Kota Delapan', _orderItems, 40000, 10000, 50000, 'Cash', 'JNT', '12345678'),
-    ];
-
-    _setLoading(false);
-  }
-
-  void _setLoading(bool loading) {
-    if (mounted) {
+    _tabController.addListener(() {
+      String status = 'unpaid';
+      switch (_tabController.index) {
+        case 0:
+          status = 'unpaid';
+          break;
+        case 1:
+          status = 'processed';
+          break;
+        case 2:
+          status = 'delivered';
+          break;
+        case 3:
+          status = 'completed';
+          break;
+        case 4:
+          status = 'canceled';
+          break;
+      }
       setState(() {
-        _isLoading = loading;
+        _stream = FirebaseFirestore.instance
+            .collection('orders')
+            .where('status', isEqualTo: status)
+            .orderBy('createdAt', descending: true)
+            .snapshots();
       });
-    } else {
-      _isLoading = loading;
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading ? const Loading() : Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         TabBar(
@@ -79,6 +84,7 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
               _buildTabContent(),
               _buildTabContent(),
               _buildTabContent(),
+              _buildTabContent(),
             ],
           ),
         ),
@@ -87,17 +93,41 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildTabContent() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7.0),
-      child: ListView.builder(
-          primary: false,
-          shrinkWrap: true,
-          itemCount: _orders.length,
-          itemBuilder: (context, index) {
-            return _buildItemCard(_orders[index]);
+    return StreamBuilder<QuerySnapshot>(
+        stream: _stream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text('Something went wrong');
           }
-      ),
-    );
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: Loading());
+          }
+
+          if (snapshot.data!.docs.isEmpty) {
+            return const Center(
+                child: Text('You don\'t have any orders in this category.'));
+          }
+
+          _orders.clear();
+          for (var element in snapshot.data!.docs) {
+            if (element.data() != null) {
+              OrderModel model = OrderModel.fromMap(
+                  element.id, element.data() as Map<String, dynamic>);
+              _orders.add(model);
+            }
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 7.0),
+            child: ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                itemCount: _orders.length,
+                itemBuilder: (context, index) {
+                  return _buildItemCard(_orders[index]);
+                }),
+          );
+        });
   }
 
   Widget _buildItemCard(OrderModel orderModel) {
@@ -106,7 +136,8 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
       child: Card(
         elevation: 6.0,
         child: InkWell(
-          onTap: () => SharedCode.navigatorPush(context, OrderDetail(orderModel: orderModel)),
+          onTap: () => SharedCode.navigatorPush(
+              context, OrderDetail(orderModel: orderModel)),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -115,22 +146,31 @@ class _OrdersState extends State<Orders> with SingleTickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(orderModel.status, style: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.bold, color: SharedCode.getOrderStatusColor(context, orderModel.status))),
-                    Text(orderModel.id, style: GoogleFonts.poppins(fontSize: 12.0))
+                    Text(
+                        orderModel.paymentMethod == 'bank'
+                            ? 'BCA Transfer'
+                            : 'COD',
+                        style: GoogleFonts.poppins(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: SharedCode.getOrderStatusColor(
+                                context, orderModel.status))),
                   ],
                 ),
                 const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(orderModel.buyersName, style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
-                    Text(orderModel.buyersPhone)
+                    Text(orderModel.shippingModel.name,
+                        style:
+                            GoogleFonts.poppins(fontWeight: FontWeight.bold)),
+                    Text(orderModel.shippingModel.phone)
                   ],
                 ),
                 const SizedBox(height: 5.0),
-                Text(orderModel.address),
+                Text(orderModel.shippingModel.address),
                 const SizedBox(height: 10.0),
-                Text('${orderModel.items.length} items'),
+                Text('${orderModel.products.length} products'),
               ],
             ),
           ),

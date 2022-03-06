@@ -180,6 +180,10 @@ class _ProductFormState extends State<ProductForm> {
       String name = _nameController.text;
       int price = int.parse(_priceController.text);
       int weight = int.parse(_weightController.text);
+      if (weight == 0) {
+        SharedCode.showSnackBar(context, 'error', 'Weight can\'t be zero');
+        return;
+      }
       String description = _descriptionController.text;
       ProductModel model = ProductModel(name: name, price: price, categoryId: _category, description: description, imageUrl: _imageUrl, isActive: _isActive, weight: weight);
       widget.isEdit ? await DatabaseService().saveProduct(widget.model!, model) : await DatabaseService().addProduct(model);
