@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "H:\\Projects\\parkang_admin\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ml\\values-ml.xml",
+            "outputFile": "C:\\Users\\Kevin RF\\Dev\\Alga\\Parkang\\parkang_admin\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ml\\values-ml.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\e91c76fa5178367a03077f75662eefda\\jetified-play-services-base-17.1.0\\res\\values-ml\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,362,573,710,829,1052,1175,1306,1437,1678,1792,1997,2131,2339,2526,2616,2711",
-                        "endColumns": "116,210,136,118,222,122,130,130,240,113,204,133,207,186,89,94,116",
-                        "endOffsets": "361,572,709,828,1051,1174,1305,1436,1677,1791,1996,2130,2338,2525,2615,2710,2827"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,226,437,578,701,924,1051,1186,1481,1722,1840,2045,2183,2391,2582,2676,2775",
-                        "endColumns": "120,210,140,122,222,126,134,134,240,117,204,137,207,190,93,98,120",
-                        "endOffsets": "221,432,573,696,919,1046,1181,1316,1717,1835,2040,2178,2386,2577,2671,2770,2891"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\da6e58967780a53f83f11ab769f7c2d2\\jetified-play-services-basement-18.0.0\\res\\values-ml\\values.xml",
+                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\da6e58967780a53f83f11ab769f7c2d2\\jetified-play-services-basement-18.0.0\\res\\values-ml\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ALGA\\.gradle\\caches\\transforms-2\\files-2.1\\8a7f6825b2c857263502d908e7ce1fa5\\core-1.6.0\\res\\values-ml\\values-ml.xml",
+                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\e91c76fa5178367a03077f75662eefda\\jetified-play-services-base-17.1.0\\res\\values-ml\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,362,573,710,829,1052,1175,1306,1437,1678,1792,1997,2131,2339,2526,2616,2711",
+                        "endColumns": "116,210,136,118,222,122,130,130,240,113,204,133,207,186,89,94,116",
+                        "endOffsets": "361,572,709,828,1051,1174,1305,1436,1677,1791,1996,2130,2338,2525,2615,2710,2827"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,226,437,578,701,924,1051,1186,1481,1722,1840,2045,2183,2391,2582,2676,2775",
+                        "endColumns": "120,210,140,122,222,126,134,134,240,117,204,137,207,190,93,98,120",
+                        "endOffsets": "221,432,573,696,919,1046,1181,1316,1717,1835,2040,2178,2386,2577,2671,2770,2891"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Kevin RF\\.gradle\\caches\\transforms-2\\files-2.1\\8a7f6825b2c857263502d908e7ce1fa5\\core-1.6.0\\res\\values-ml\\values-ml.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
