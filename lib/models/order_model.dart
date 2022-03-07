@@ -17,7 +17,7 @@ class OrderModel {
   final ShippingModel shippingModel;
   final ShipmentModel shipmentModel;
   final List<ProductOrderModel> products;
-  final DateTime? arrivedAt;
+  DateTime? arrivedAt;
 
   OrderModel({
     this.id = '',

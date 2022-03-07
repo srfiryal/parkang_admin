@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:parkang_admin/models/order_model.dart';
 import 'package:parkang_admin/models/product_order_model.dart';
 import 'package:parkang_admin/services/database_service.dart';
@@ -38,9 +40,11 @@ class _OrderDetailState extends State<OrderDetail> {
           await DatabaseService().changeOrderShipmentReceipt(widget.orderModel.id, _receiptController.text);
           widget.orderModel.shipmentReceipt = _receiptController.text;
           _setLoading(false);
-          Navigator.pop(context);
           Future.delayed(Duration.zero, () {
             SharedCode.showSnackBar(context, 'success', 'Shipment Receipt has been updated');
+          });
+          setState(() {
+            widget.orderModel.shipmentReceipt = _receiptController.text;
           });
         }),
       ],
@@ -79,6 +83,8 @@ class _OrderDetailState extends State<OrderDetail> {
             _buildDivider(),
             _buildPricing(),
             _buildDivider(),
+            _buildDate(),
+            _buildDivider(),
             widget.orderModel.paymentMethod == 'bank'
                 ? _buildImage()
                 : const SizedBox.shrink(),
@@ -88,6 +94,24 @@ class _OrderDetailState extends State<OrderDetail> {
         ),
       ),
     );
+  }
+
+  Future<void> _showDatePicker() async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: widget.orderModel.arrivedAt! != SharedCode.arrivedAtDefault ? widget.orderModel.arrivedAt! : DateTime.now(),
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2030),
+    );
+
+    if (selected != null && selected != widget.orderModel.arrivedAt) {
+      setState(() {
+        widget.orderModel.arrivedAt = selected;
+      });
+      await DatabaseService().changeArrivalDate(widget.orderModel.id, widget.orderModel.arrivedAt!);
+      SharedCode.showSnackBar(context, 'success', 'Arrival Date has been updated');
+    }
+    Navigator.pop(context);
   }
 
   Widget _buildButton() {
@@ -110,10 +134,16 @@ class _OrderDetailState extends State<OrderDetail> {
         widget.orderModel.status == 'delivered' ? OutlinedButton(
             onPressed: () async {
               SharedCode.showConfirmationDialog(context, 'Confirmation', 'Are you sure you want to change this order\'s shipment receipt?', () async {
+                Navigator.pop(context);
                 _showReceiptDialog();
               });
             }, child: const Text('Change Shipment Receipt')) : const SizedBox.shrink(),
-
+        widget.orderModel.status == 'delivered' ? OutlinedButton(
+            onPressed: () async {
+              SharedCode.showConfirmationDialog(context, 'Confirmation', 'Are you sure you want to change this order\'s arrival date?', () async {
+                _showDatePicker();
+              });
+            }, child: const Text('Change Arrival Date')) : const SizedBox.shrink(),
         widget.orderModel.hasPay && widget.orderModel.paymentUrl.isNotEmpty ? OutlinedButton(
             onPressed: () async {
               SharedCode.showConfirmationDialog(context, 'Confirmation', 'Are you sure you want to change this order\'s status to $tempNextStatus?', () async {
@@ -258,12 +288,23 @@ class _OrderDetailState extends State<OrderDetail> {
     );
   }
 
-  Widget _buildTextLabel(String label, String value) {
+  Widget _buildTextLabel(String label, String value, {bool isShipmentReceipt = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(label),
-        Text(value),
+        isShipmentReceipt ? Row(
+          children: [
+            Text(value),
+            const SizedBox(width: 5),
+            InkWell(
+                onTap: () {
+                  Clipboard.setData(ClipboardData(text: value));
+                  SharedCode.showSnackBar(context, 'success', '$value has been copied to clipboard');
+                },
+                child: const Icon(Icons.copy, size: 16)),
+          ],
+        ) : Text(value),
       ],
     );
   }
@@ -273,7 +314,7 @@ class _OrderDetailState extends State<OrderDetail> {
       _buildTextLabel('Shipment Method',
           widget.orderModel.paymentMethod == 'bank' ? 'BCA Transfer' : 'COD'),
       const SizedBox(height: 2.0),
-      _buildTextLabel('Shipment Receipt', widget.orderModel.shipmentReceipt),
+      _buildTextLabel('Shipment Receipt', widget.orderModel.shipmentReceipt, isShipmentReceipt: true),
     ]);
   }
 
@@ -286,6 +327,14 @@ class _OrderDetailState extends State<OrderDetail> {
           'Shipping Fee', widget.orderModel.shipmentModel.price, false),
       const SizedBox(height: 2.0),
       _buildPricingLabel('Total Amount', widget.orderModel.totalPrice, true),
+    ]);
+  }
+
+  Widget _buildDate() {
+    DateFormat format = DateFormat('dd MMMM yyyy');
+    return Column(children: [
+      _buildTextLabel('Arrival Date',
+          widget.orderModel.arrivedAt == SharedCode.arrivedAtDefault ? '-' : format.format(widget.orderModel.arrivedAt!)),
     ]);
   }
 
