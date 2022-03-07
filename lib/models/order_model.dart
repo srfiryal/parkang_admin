@@ -5,7 +5,7 @@ import 'package:parkang_admin/models/shipping_model.dart';
 import 'package:parkang_admin/shared/shared_code.dart';
 
 class OrderModel {
-  final String id,
+  String id,
       uid,
       additionalComments,
       paymentMethod,

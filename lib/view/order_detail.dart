@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parkang_admin/models/order_model.dart';
 import 'package:parkang_admin/models/product_order_model.dart';
 import 'package:parkang_admin/services/database_service.dart';
+import 'package:parkang_admin/shared/custom_text_field.dart';
 import 'package:parkang_admin/shared/loading.dart';
 import 'package:parkang_admin/shared/shared_code.dart';
 import 'package:parkang_admin/view/view_image.dart';
@@ -18,6 +19,41 @@ class OrderDetail extends StatefulWidget {
 
 class _OrderDetailState extends State<OrderDetail> {
   bool _isLoading = false;
+  final TextEditingController _receiptController = TextEditingController();
+
+  void _showReceiptDialog() {
+    AlertDialog alert = AlertDialog(
+      title: const Text('Shipment Receipt'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomTextField(label: 'Receipt ID', controller: _receiptController),
+        ],
+      ),
+      actions: [
+        TextButton(child: const Text('Cancel'), onPressed: () => Navigator.of(context).pop()),
+        TextButton(child: const Text('Submit'), onPressed: () async {
+          Navigator.pop(context);
+          _setLoading(true);
+          await DatabaseService().changeOrderShipmentReceipt(widget.orderModel.id, _receiptController.text);
+          widget.orderModel.shipmentReceipt = _receiptController.text;
+          _setLoading(false);
+          Navigator.pop(context);
+          Future.delayed(Duration.zero, () {
+            SharedCode.showSnackBar(context, 'success', 'Shipment Receipt has been updated');
+          });
+        }),
+      ],
+
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   void _setLoading(bool loading) {
     setState(() {
@@ -74,14 +110,7 @@ class _OrderDetailState extends State<OrderDetail> {
         widget.orderModel.status == 'delivered' ? OutlinedButton(
             onPressed: () async {
               SharedCode.showConfirmationDialog(context, 'Confirmation', 'Are you sure you want to change this order\'s shipment receipt?', () async {
-                Navigator.pop(context);
-                _setLoading(true);
-                await DatabaseService().changeOrderStatus(widget.orderModel.id, nextStatus);
-                _setLoading(false);
-                Navigator.pop(context);
-                Future.delayed(Duration.zero, () {
-                  SharedCode.showSnackBar(context, 'success', 'Shipment Receipt has been updated');
-                });
+                _showReceiptDialog();
               });
             }, child: const Text('Change Shipment Receipt')) : const SizedBox.shrink(),
 
