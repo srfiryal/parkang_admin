@@ -121,6 +121,12 @@ class DatabaseService {
     });
   }
 
+  Future<void> changeArrivalDate(String orderId, DateTime date) async {
+    await orders.doc(orderId).update({
+      'arrivedAt': Timestamp.fromDate(date)
+    });
+  }
+
   Future<void> changeOrderShipmentReceipt(String orderId, String receipt) async {
     await orders.doc(orderId).update({
       'shipmentReceipt': receipt
