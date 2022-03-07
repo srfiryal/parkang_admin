@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Parkang Admin',
+      title: 'Supra Admin',
       theme: ThemeData(
         primaryColor: Colors.blueGrey.shade700,
         primarySwatch: Colors.blueGrey,

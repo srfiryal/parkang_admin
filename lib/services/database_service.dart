@@ -6,6 +6,7 @@ import 'package:parkang_admin/models/role_model.dart';
 
 class DatabaseService {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference orders = FirebaseFirestore.instance.collection('orders');
   CollectionReference categories =
       FirebaseFirestore.instance.collection('categories');
   CollectionReference products =
@@ -99,5 +100,30 @@ class DatabaseService {
       print(e.toString());
       return e.toString();
     }
+  }
+
+  Future<void> denyPayment(String orderId) async {
+    await orders.doc(orderId).update({
+      'hasPay': false,
+      'status': 'unpaid'
+    });
+  }
+
+  Future<void> cancelOrder(String orderId) async {
+    await orders.doc(orderId).update({
+      'status': 'canceled'
+    });
+  }
+
+  Future<void> changeOrderStatus(String orderId, String status) async {
+    await orders.doc(orderId).update({
+      'status': status
+    });
+  }
+
+  Future<void> changeOrderShipmentReceipt(String orderId, String receipt) async {
+    await orders.doc(orderId).update({
+      'shipmentReceipt': receipt
+    });
   }
 }

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class SharedCode {
   static final rupiahFormat = NumberFormat.currency(locale: 'id_ID', decimalDigits: 0, symbol: 'Rp');
 
+  static DateTime arrivedAtDefault = DateTime(2000, 1, 1);
+
   static String? emptyValidator(value) {
     return value.toString().trim().isEmpty ? 'Field can\'t be blank' : null;
   }

@@ -15,6 +15,8 @@ MERGED from [com.google.firebase:firebase-analytics-ktx:20.0.2] C:\Users\ALGA\.g
 MERGED from [com.google.firebase:firebase-analytics-ktx:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e6fd44d7b153b2ae52bd5047ed1f9f4f\jetified-firebase-analytics-ktx-20.0.2\AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:11:5-19:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:11:5-19:19
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [com.google.firebase:firebase-analytics:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\8857119fda8a9c275ca09676538f61fb\jetified-firebase-analytics-20.0.2\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-analytics:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\8857119fda8a9c275ca09676538f61fb\jetified-firebase-analytics-20.0.2\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\499d23dc3ef10de152fc54312b4b7237\jetified-firebase-auth-21.0.1\AndroidManifest.xml:26:5-81:19
@@ -79,6 +81,8 @@ MERGED from [:path_provider_android] H:\Projects\parkang_admin\build\path_provid
 MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\8b4d74255ec55a66570eeb1acf08ff95\multidex-2.0.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-analytics-ktx:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e6fd44d7b153b2ae52bd5047ed1f9f4f\jetified-firebase-analytics-ktx-20.0.2\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:2:1-21:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\2f64dc483bf890d7b533028842bf6f72\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [com.google.firebase:firebase-analytics:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\8857119fda8a9c275ca09676538f61fb\jetified-firebase-analytics-20.0.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\499d23dc3ef10de152fc54312b4b7237\jetified-firebase-auth-21.0.1\AndroidManifest.xml:17:1-83:12
 MERGED from [com.google.firebase:firebase-firestore:24.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\3dc7ec22b9a78d90b98ee9b82e99b63d\jetified-firebase-firestore-24.0.1\AndroidManifest.xml:2:1-26:12
@@ -206,6 +210,10 @@ MERGED from [com.google.firebase:firebase-analytics-ktx:20.0.2] C:\Users\ALGA\.g
 MERGED from [com.google.firebase:firebase-analytics-ktx:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e6fd44d7b153b2ae52bd5047ed1f9f4f\jetified-firebase-analytics-ktx-20.0.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\2f64dc483bf890d7b533028842bf6f72\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\2f64dc483bf890d7b533028842bf6f72\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-analytics:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\8857119fda8a9c275ca09676538f61fb\jetified-firebase-analytics-20.0.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:20.0.2] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\8857119fda8a9c275ca09676538f61fb\jetified-firebase-analytics-20.0.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\499d23dc3ef10de152fc54312b4b7237\jetified-firebase-auth-21.0.1\AndroidManifest.xml:21:5-44
@@ -410,6 +418,18 @@ ADDED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradl
 		ADDED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:17:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-common-ktx:20.0.0] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\9539556afe0c6d25dabfd2645111e4bd\jetified-firebase-common-ktx-20.0.0\AndroidManifest.xml:16:17-113
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\e7edbfba295a60c1dabb648c4d250fa9\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\499d23dc3ef10de152fc54312b4b7237\jetified-firebase-auth-21.0.1\AndroidManifest.xml:24:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.0.1] C:\Users\ALGA\.gradle\caches\transforms-2\files-2.1\3dc7ec22b9a78d90b98ee9b82e99b63d\jetified-firebase-firestore-24.0.1\AndroidManifest.xml:13:5-79
