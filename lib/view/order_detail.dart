@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parkang_admin/models/order_model.dart';
 import 'package:parkang_admin/models/product_order_model.dart';
+import 'package:parkang_admin/shared/custom_text_field.dart';
 import 'package:parkang_admin/shared/shared_code.dart';
 
 class OrderDetail extends StatefulWidget {
@@ -14,6 +15,34 @@ class OrderDetail extends StatefulWidget {
 }
 
 class _OrderDetailState extends State<OrderDetail> {
+  final TextEditingController _receiptController = TextEditingController();
+
+  void _showReceiptDialog() {
+    AlertDialog alert = AlertDialog(
+      title: const Text('Shipment Receipt'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomTextField(label: 'Receipt ID', controller: _receiptController),
+        ],
+      ),
+      actions: [
+        TextButton(child: const Text('Cancel'), onPressed: () => Navigator.of(context).pop()),
+        TextButton(child: const Text('Submit'), onPressed: () {
+          Navigator.of(context).pop();
+        }),
+      ],
+
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
