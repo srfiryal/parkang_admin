@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
 
     <application
-        android:label="Parkang Admin"
+        android:label="Supra Admin"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
